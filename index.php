@@ -138,5 +138,47 @@ Xij/Max Xij
 		}
 	?>
 	</table>
+
+	<br>
+	Hasil Akhir
+	<table border="1">
+		<tr>
+			<th>Nama</th>
+			<th>Total</th>
+		</tr>
+	<?php
+		$tertinggi = 0;
+		$result2 = $koneksi->query($query);
+		while($data = $result2->fetch_array())
+		{
+			$nama = $data['nama'];
+			$pendidikan = $data['pendidikan'];
+			$pengalaman = $data['pengalaman'];
+			$keahlian = $data['keahlian'];
+			$umur = $data['umur'];
+
+			$pendidikan_hasil = $pendidikan/$max_pendidikan;
+			$pengalaman_hasil = $pengalaman/$max_pengalaman;
+			$keahlian_hasil = $keahlian/$max_keahlian;
+			$umur_hasil = $umur/$max_umur;
+
+			$total = $pendidikan_hasil+$pengalaman_hasil+$keahlian_hasil+$umur_hasil;
+
+			if($total > $tertinggi){
+				$tertinggi = $total;
+				$hasil['nama'] = $nama;
+				$hasil['total'] = $total;
+			}
+
+			?>
+			<tr>
+				<td><?= $nama ?></td>
+				<td><?= $total ?></td>
+			</tr>
+			<?php
+		}
+	?>
+	</table>
+	Kesimpulan = nilai tertinggi diperoleh <?= $hasil['nama'] ?> dengan nilai <?= $hasil['total'] ?>
 </body>
 </html>
