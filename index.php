@@ -33,6 +33,7 @@
 		while($row = $result->fetch_array())
 		{
 			$id = $row['id'];
+			$link_hapus = "hapus_aksi.php?id=".$id;
 			?>
 			<tr>
 				<td><?= $row['nama'] ?></td>
@@ -40,7 +41,7 @@
 				<td><?= $row['pengalaman'] ?></td>
 				<td><?= $row['keahlian'] ?></td>
 				<td><?= $row['umur'] ?></td>
-				<td><a href="hapus.php?id=">Hapus</a></td>
+				<td><a href="<?= $link_hapus ?>">Hapus</a></td>
 			</tr>
 			<?php
 		}
